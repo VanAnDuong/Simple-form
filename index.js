@@ -63,3 +63,4 @@ app.listen(port, function () {
     console.log(`Web server running at: http://localhost:${port}`);
     console.log("Type Ctrl+C to shut down the web server");
 });
+module.exports = app;
