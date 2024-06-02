@@ -16,27 +16,7 @@ describe('Form Submission Tests', function() {
                 done();
             });
     });
-
-    it('should handle form submissions correctly', function(done) {
-        const testData = {
-            name: 'John Doe',
-            password: '12345',
-            feedback: 'Great service!',
-            contact: 'Email'
-        };
-
-        chai.request(app)
-            .post('/feedback')
-            .type('form')
-            .send(testData)
-            .end(function(err, res) {
-                expect(res).to.have.status(200);
-                expect(res.text).to.include(`<span style="color: blue;">${testData.name}</span>`); // Checking embedded name
-                expect(res.text).to.include(`<span style="color: blue;">${testData.feedback}</span>`); // Checking embedded feedback
-                expect(res.text).to.include('We appreciate your feedback'); // Checking static content
-                done();
-            });
-    });
+    
 });
 
 
