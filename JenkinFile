@@ -23,6 +23,8 @@ pipeline {
                 script {
                     // Installing dependencies
                     sh 'npm install'
+                    
+
                 }
             }
         }
@@ -31,7 +33,7 @@ pipeline {
             steps {
                 script {
                     // Run automated tests
-                    sh 'npm test'
+                    sh 'npm test -- --exit'
                 }
             }
         }
