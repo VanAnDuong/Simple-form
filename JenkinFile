@@ -1,0 +1,67 @@
+pipeline {
+    agent any
+    
+    tools {nodejs "nodeHD"}
+    
+    environment {
+        // Set the node version environment variable
+        NODE_VERSION = '20.14.0'
+    }
+
+    stages {
+        //stage('Prepare') {
+            // steps {
+                // script {
+                    // Sourcing nvm and using a specific Node version
+                   // sh 'source /home/jenkins/.nvm/nvm.sh && nvm install $NODE_VERSION && nvm use $NODE_VERSION'
+               //  }
+            // }
+       //  }
+
+        stage('Build') {
+            steps {
+                script {
+                    // Installing dependencies
+                    sh 'npm install'
+                    // Optionally, you can build your frontend assets
+                    sh 'npm run build'
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                script {
+                    // Run automated tests
+                    sh 'npm test'
+                }
+            }
+        }
+
+        stage('Code Quality Analysis') {
+            steps {
+                script {
+                    // You can integrate a tool like ESLint for JavaScript linting
+                    sh 'npm run lint'
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    // Deploy your application to a staging environment
+                    // This could involve copying files to a remote server or using Docker
+                    sh 'scp -r * username@staging-server:/path/to/deploy'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up workspace after the pipeline runs
+            cleanWs()
+        }
+    }
+}
