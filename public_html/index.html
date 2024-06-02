@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Task 9.1P</title>
+
+    <meta charset="utf-8">
+    <meta name="author" content="SIT774">
+    <meta name="description" content="Express Sqlite3 Form Demo">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Latest compiled and minified CSS -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>Express Server Form Example</h1>
+        <h3>dKin Pizza Feedback Form</h3>
+        <p>Please complete the form below with your contact details along with
+            any feedback on your recent dKin Pizza experiences:</p>
+
+        <form action="/feedback" method="post">
+            <div class="row mb-2">
+                <label class="col-sm-2 col-form-label-sm text-sm-end" for="customer">Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="customer"
+                        placeholder="Enter your name" name="name">
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label class="col-sm-2 col-form-label-sm text-sm-end" for="pwd">Password:</label>
+                <div class="col-sm-10">
+
+                    <input type="password" class="form-control" id="pwd"
+                        placeholder="Enter password" name="password">
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label class="col-sm-2 col-form-label-sm text-sm-end"
+                    for="feedback">Feedback:</label>
+                <div class="col-sm-10">
+                    <textarea rows="5" class="form-control" id="feedback"
+                        name="feedback"
+                        placeholder="Please type your comment/feedback here..."></textarea>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label class="col-sm-2 col-form-label-sm text-sm-end">Contact Method:</label>
+                <div class="col-sm-10 my-auto">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="contact" value="email" id="rb1">
+                        <label class="form-check-label" for="rb1">
+                            Email
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="contact" value="mobile" id="rb2">
+                        <label class="form-check-label" for="rb2">
+                            Mobile
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="contact" value="letter" id="rb3">
+                        <label class="form-check-label" for="rb3">
+                            Post
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-sm mx-auto d-flex justify-content-center ">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                <div class="col-sm mx-auto d-flex justify-content-center">
+                    <button type="reset" class="btn btn-primary">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JavScript files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
