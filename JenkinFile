@@ -41,7 +41,7 @@ pipeline {
         stage('Code Quality Analysis') {
     steps {
         script {
-            sh 'npm run lint'
+            sh 'npm run lint -- --exit'
         }
     }
 }
