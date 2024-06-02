@@ -23,8 +23,6 @@ pipeline {
                 script {
                     // Installing dependencies
                     sh 'npm install'
-                    // Optionally, you can build your frontend assets
-                    sh 'npm run build'
                 }
             }
         }
