@@ -39,10 +39,10 @@ pipeline {
         }
 
         stage('Code Quality Analysis') {
-    steps {
-        script {
-            sh 'npm run lint'
-            sh 'npx eslint "**/*.js" --fix'
+            steps {
+                script {
+                   sh 'npm run lint'
+            
         }
     }
 }
