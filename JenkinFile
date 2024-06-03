@@ -78,9 +78,7 @@ pipeline {
                           
                          echo 'No files to remove.'
                     }
-                    sh 'cp -r dist/* .'
-                    sh 'git add --all'
-                    sh 'git status' 
+                    sh 'git pull origin main'
                     withCredentials([string(credentialsId: "${env.GITHUB_CREDENTIALS_ID}", variable: 'GITHUB_TOKEN')]) {
                     sh 'git commit -m "Release to GitHub Pages"'
                     sh 'git push --force origin gh-pages'
