@@ -6,7 +6,7 @@ pipeline {
     environment {
         // Set the node version environment variable
         NODE_VERSION = '20.14.0'
-        GITHUB_CREDENTIALS_ID = '57ed8bd7-2879-442d-9598-d6a1faedc46e'
+        
     }
 
     stages {
@@ -49,8 +49,6 @@ pipeline {
         }
     }
 }
-
-
         stage('Deploy') {
             steps {
                 script {
@@ -59,28 +57,6 @@ pipeline {
                     
                     // Finally, stop the containers after tests are done
                     sh 'docker-compose down'
-                }
-            }
-        }
-        stage('Release') {
-            steps {
-                script {
-                    // Config Git
-                    sh 'git config user.email "andv2013@gmail.com"'
-                    sh 'git config user.name "VanAnDuong"'
-                    sh 'git checkout main'
-
-                    // Check if there are any changes. If there are, add, commit, and push them
-                    def hasChanges = sh(script: "git status --porcelain", returnStdout: true).trim()
-                    if (hasChanges) {
-                       withCredentials([string(credentialsId: "${env.GITHUB_CREDENTIALS_ID}", variable: 'GITHUB_TOKEN')]) {
-                       sh 'git add --all'
-                       sh 'git commit -m "Release to GitHub Pages"'
-                       sh 'git push'
-                    }
-                    } else {
-                       echo "No changes to commit."
-                    }
                 }
             }
         }
