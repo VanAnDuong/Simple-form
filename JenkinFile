@@ -61,6 +61,33 @@ pipeline {
                 }
             }
         }
+        stage('Release') {
+            steps {
+                script {
+                    // Config Git
+                    sh 'git config user.email "andv2013@gmail.com"'
+                    sh 'git config user.name "VanAnDuong"'
+
+                    // Switch to gh-pages
+                    sh 'git checkout gh-pages'
+
+                    // Remove
+                    sh 'rm -rf !(\\.git|\\.git/**)'
+
+                    // 
+                    sh 'cp -r dist/* .'
+
+                    // 
+                    sh 'git add --all'
+
+                    // 
+                    withCredentials([string(credentialsId: "${env.GITHUB_CREDENTIALS_ID}", variable: 'GITHUB_TOKEN')]) {
+                        sh 'git commit -m "Deploy to GitHub Pages"'
+                        sh 'git push --force origin gh-pages'
+                    }
+                }
+            }
+        }
     }
 
     post {
