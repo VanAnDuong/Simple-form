@@ -69,9 +69,16 @@ pipeline {
                     sh 'git config user.email "andv2013@gmail.com"'
                     sh 'git config user.name "VanAnDuong"'
                     sh 'git checkout gh-pages'
-                    sh 'git rm -rf . && git clean -fxd'
+                    if (sh(script: "git ls-files", returnStdout: true).trim() != '') {
+                          // Check whether files exist or not 
+                         sh 'git rm -rf .'
+                
+                         sh 'git clean -fxd'
+                    } else {
+                          
+                         echo 'No files to remove.'
+                    }
                     sh 'cp -r dist/* .'
-                    sh 'ls -al' 
                     sh 'git add --all'
                     sh 'git status' 
                     withCredentials([string(credentialsId: "${env.GITHUB_CREDENTIALS_ID}", variable: 'GITHUB_TOKEN')]) {
