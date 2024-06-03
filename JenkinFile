@@ -21,7 +21,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh '/usr/local/bin/docker build -f Dockerfile -t 82'
+                    sh 'docker build -t 82 .'
                     // Installing dependencies
                     sh 'npm install'
 
