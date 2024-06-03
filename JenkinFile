@@ -53,9 +53,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Deploy your application to a staging environment
-                    // This could involve copying files to a remote server or using Docker
-                     sh 'docker compose up -- --exit'
+                    // Start the containers using Docker Compose
+                    sh 'docker-compose up -d'
+                    
+                    // Finally, stop the containers after tests are done
+                    sh 'docker-compose down'
                 }
             }
         }
