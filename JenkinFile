@@ -21,6 +21,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    env.PATH = "/usr/local/bin:${env.PATH}"
+                    sh 'echo $PATH'
                     sh 'docker build -t 82 .'
                     // Installing dependencies
                     sh 'npm install'
