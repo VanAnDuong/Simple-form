@@ -6,6 +6,7 @@
   "scripts": {
     "test": "mocha test/formTest.js",
     "lint": "eslint ."
+    
   },
   "author": "An",
   "license": "ISC",
