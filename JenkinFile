@@ -21,9 +21,9 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    sh '/usr/local/bin/docker build -f Dockerfile -t path_em_đặt_tên'
                     // Installing dependencies
                     sh 'npm install'
-                    
 
                 }
             }
@@ -53,7 +53,7 @@ pipeline {
                 script {
                     // Deploy your application to a staging environment
                     // This could involve copying files to a remote server or using Docker
-                     sh 'docker compose up '
+                     sh '/usr/local/bin/docker compose up'
                 }
             }
         }
