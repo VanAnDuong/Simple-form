@@ -19,9 +19,9 @@ describe("Form Submission Tests", function() {
 
   it("should handle form submissions correctly", function(done) {
     const testData = {
-      name: "John Doe",
-      password: "12345",
-      feedback: "Great service!",
+      name: "VanAn",
+      password: "An nho Ha Noi",
+      feedback: "va cau nua, cho to nhe",
       contact: "Email"
     };
     
