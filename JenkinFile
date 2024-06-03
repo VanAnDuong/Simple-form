@@ -1,32 +1,24 @@
 pipeline {
     agent any
     
-    tools {nodejs "nodeHD"}
+    tools {nodejs "nodeHD"} // NodeJs installations
     
     environment {
         // Set the node version environment variable
         NODE_VERSION = '20.14.0'
-        GITHUB_CREDENTIALS_ID = '57ed8bd7-2879-442d-9598-d6a1faedc46e'
+        GITHUB_CREDENTIALS_ID = '57ed8bd7-2879-442d-9598-d6a1faedc46e' // My credentials ID of Github in Jenkins
     }
 
     stages {
-        //stage('Prepare') {
-            // steps {
-                // script {
-                    // Sourcing nvm and using a specific Node version
-                   // sh 'source /home/jenkins/.nvm/nvm.sh && nvm install $NODE_VERSION && nvm use $NODE_VERSION'
-               //  }
-            // }
-       //  }
 
         stage('Build') {
             steps {
                 script {
                     env.PATH = "/usr/local/bin:${env.PATH}"
                     sh 'echo $PATH'
-                    sh 'docker build -t 82 .'
+                    sh 'docker build -t 82 .' // Build Docker image 
                     // Installing dependencies
-                    sh 'npm install'
+                    sh 'npm install' // Install dependencies of the project 
 
                 }
             }
@@ -36,7 +28,7 @@ pipeline {
             steps {
                 script {
                     // Run automated tests
-                    sh 'npm test -- --exit'
+                    sh 'npm test -- --exit' // Run automated test for project (must include exit for Jenkins exits after testing)
                 }
             }
         }
@@ -44,7 +36,7 @@ pipeline {
         stage('Code Quality Analysis') {
             steps {
                 script {
-                   sh 'npm run lint'
+                   sh 'npm run lint' // Run code quality analysis for the project 
             
         }
     }
@@ -54,23 +46,20 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Start the containers using Docker Compose
-                    sh 'docker-compose up -d'
-                    
-                    // Finally, stop the containers after tests are done
-                    sh 'docker-compose down'
+                    sh 'docker-compose up -d' // Start the containers using Docker Compose
+                    sh 'docker-compose down' // Finally, stop the containers after tests are done
                 }
             }
         }
         stage('Release project to Github') {
             steps {
                 script {
-                    // Config Git
+                    // Config Git with my name and user name
                     sh 'git config user.email "andv2013@gmail.com"'
                     sh 'git config user.name "VanAnDuong"'
-                    sh 'git checkout main'
+                    sh 'git checkout main' // Make sure it is in main branch
 
-                    // Check if there are any changes. If there are, add, commit, and push them
+                    // Check if anything changes 
                     def hasChanges = sh(script: "git status --porcelain", returnStdout: true).trim()
                     if (hasChanges) {
                        withCredentials([string(credentialsId: "${env.GITHUB_CREDENTIALS_ID}", variable: 'GITHUB_TOKEN')]) {
