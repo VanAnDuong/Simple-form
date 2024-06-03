@@ -68,20 +68,10 @@ pipeline {
                     // Config Git
                     sh 'git config user.email "andv2013@gmail.com"'
                     sh 'git config user.name "VanAnDuong"'
-                    sh 'git checkout gh-pages'
-                    if (sh(script: "git ls-files", returnStdout: true).trim() != '') {
-                          // Check whether files exist or not 
-                         sh 'git rm -rf .'
-                
-                         sh 'git clean -fxd'
-                    } else {
-                          
-                         echo 'No files to remove.'
-                    }
-                    sh 'git pull origin main'
+                    sh 'git checkout main'
                     withCredentials([string(credentialsId: "${env.GITHUB_CREDENTIALS_ID}", variable: 'GITHUB_TOKEN')]) {
                     sh 'git commit -m "Release to GitHub Pages"'
-                    sh 'git push --force origin gh-pages'
+                    sh 'git push'
 
                     }
                 }
