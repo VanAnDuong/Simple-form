@@ -53,7 +53,7 @@ pipeline {
                 script {
                     // Deploy your application to a staging environment
                     // This could involve copying files to a remote server or using Docker
-                    sh 'docker compose up '
+                     sh 'docker compose up '
                 }
             }
         }
