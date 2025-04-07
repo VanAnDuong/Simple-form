@@ -6,7 +6,7 @@ pipeline {
     environment {
         // Set the node version environment variable
         NODE_VERSION = '20.14.0'
-        GITHUB_CREDENTIALS_ID = '57ed8bd7-2879-442d-9598-d6a1faedc46e' // My credentials ID of Github in Jenkins
+        GITHUB_CREDENTIALS_ID = '' // My credentials ID of Github in Jenkins
     }
 
     stages {
